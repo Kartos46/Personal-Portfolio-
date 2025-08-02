@@ -4,7 +4,7 @@ import { Download, Mail, Github, Linkedin } from "lucide-react";
 import profilePhoto from "@/assets/profile-photo.jpg";
 
 const Hero = () => {
-  const techStack = ["React", "TypeScript", "Python", "Flask", "MySQL", "AI/ML", "PHP", "Tailwind"];
+  const techStack = ["Html", "TypeScript", "Python", "JavaScript", "MySQL", "AI/ML", "PHP", "Tailwind"];
 
   return (
     <section className="min-h-screen flex items-center justify-center gradient-hero relative overflow-hidden">
@@ -21,7 +21,7 @@ const Hero = () => {
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
               Hi, I'm{" "}
               <span className="bg-clip-text text-transparent gradient-primary">
-                Alex Chen
+                Ashish Redij
               </span>
             </h1>
             <p className="text-xl lg:text-2xl text-muted-foreground mb-8 leading-relaxed">
@@ -47,24 +47,35 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
-              <Button size="lg" className="shadow-glow hover:shadow-glow transition-smooth">
-                <Mail className="mr-2 h-5 w-5" />
-                Get In Touch
-              </Button>
-              <Button variant="outline" size="lg" className="transition-smooth hover:bg-primary hover:text-primary-foreground">
-                <Download className="mr-2 h-5 w-5" />
-                Download Resume
-              </Button>
+              <a href="mailto:kartikredij46@gmail.com?subject=Let's%20Work%20Together&body=Hi%20Kartik,%20I%20saw%20your%20portfolio...">
+                <Button size="lg" className="shadow-glow hover:shadow-glow transition-smooth">
+                  <Mail className="mr-2 h-5 w-5" />
+                   Get In Touch
+                </Button>
+              </a>
+              <a href="/resume/Kartik_Redij_Resume.pdf" 
+                 download="Kartik_Redij_Frontend_Developer_Resume.pdf"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <Button variant="outline" size="lg" className="transition-smooth hover:bg-primary hover:text-primary-foreground">
+                   <Download className="mr-2 h-5 w-5" />
+                     Download Resume
+                </Button>
+              </a>
             </div>
 
             {/* Social Links */}
             <div className="flex gap-4 justify-center lg:justify-start">
-              <Button variant="ghost" size="icon" className="transition-smooth hover:text-primary">
-                <Github className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="transition-smooth hover:text-primary">
-                <Linkedin className="h-5 w-5" />
-              </Button>
+              <a href="https://github.com/Kartos46" target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="icon" className="transition-smooth hover:text-primary">
+                 <Github className="h-5 w-5" />
+                </Button>
+              </a>
+              <a href="https://www.linkedin.com/in/kartik-redij-758a82377/" target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="icon" className="transition-smooth hover:text-primary">
+                 <Linkedin className="h-5 w-5" />
+                </Button>
+              </a>
             </div>
           </div>
 
@@ -74,7 +85,7 @@ const Hero = () => {
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-glow animate-glow">
                 <img 
                   src={profilePhoto} 
-                  alt="Alex Chen - Full Stack Developer" 
+                  alt="Ashish Redij - Full Stack Developer" 
                   className="w-full h-full object-cover"
                 />
               </div>

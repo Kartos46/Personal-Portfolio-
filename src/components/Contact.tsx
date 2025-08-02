@@ -44,27 +44,27 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "alex.chen@example.com",
-      href: "mailto:alex.chen@example.com"
+      value: "kartikredij1@gmail.com",
+      href: "mailto:kartikredij1@gmail.com"
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
+      value: "+91 (983) 134-4567",
+      href: "tel:+919831234567"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
-      href: "https://maps.google.com/?q=San+Francisco,+CA"
+      value: "Sawantwadi",
+      href: "https://www.google.com/maps/search/Sawantwadi+Bus+Stand/@15.9100806,73.8192169,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI1MDcyOC4wIKXMDSoASAFQAw%3D%3D"
     }
   ];
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/alexchen", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com/in/alexchen", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com/alexchen", label: "Twitter" }
+    { icon: Github, href: "https://github.com/Kartos46/", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/kartik-redij-758a82377/", label: "LinkedIn" },
+    { icon: Twitter, href: "https://twitter.com/ashish", label: "Twitter" }
   ];
 
   return (

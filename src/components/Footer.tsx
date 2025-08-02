@@ -5,12 +5,13 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/alexchen", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com/in/alexchen", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com/alexchen", label: "Twitter" },
-    { icon: Mail, href: "mailto:alex.chen@example.com", label: "Email" }
+    { icon: Github, href: "https://github.com/Kartos46/", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/kartik-redij-758a82377/", label: "LinkedIn" },
+    { icon: Twitter, href: "https://twitter.com/ash", label: "Twitter" },
+    { icon: Mail, href: "mailto:kartikredij1@gmail.com", label: "Email" }
   ];
 
+ 
   const quickLinks = [
     { label: "About", href: "#about" },
     { label: "Projects", href: "#projects" },
@@ -88,7 +89,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-muted-foreground text-sm">
-            <span>© {currentYear} Alex Chen. Built with</span>
+            <span>© {currentYear} Ashish Redij. Built with</span>
             <Heart className="h-4 w-4 text-red-500 animate-float" />
             <span>and lots of coffee.</span>
           </div>

@@ -1,9 +1,16 @@
+import { useState, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Brain, FileText, MessageCircle, Target, Upload, Sparkles } from "lucide-react";
 
 const AIFeatures = () => {
+  // Refs and State (add this at the top of your component)
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+
   const features = [
     {
       icon: FileText,
@@ -38,6 +45,54 @@ const AIFeatures = () => {
       demo: true
     }
   ];
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size should be less than 5MB');
+        return;
+      }
+      setUploadedFile(file);
+    }
+  };
+
+  const handleAnalyze = () => {
+    if (!uploadedFile) return;
+    
+    setIsAnalyzing(true);
+    
+    // Simulate analysis (replace with actual API call)
+    const handleAnalyze = async () => {
+  if (!uploadedFile) return;
+
+  setIsAnalyzing(true);
+
+  const formData = new FormData();
+  formData.append("file", uploadedFile);
+
+  try {
+    const response = await fetch("http://localhost:8000/analyze-resume/", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+    setIsAnalyzing(false);
+
+    if (data.success) {
+      alert(`Resume Analyzed!\n\nSummary: ${data.result.summary}`);
+    } else {
+      alert("Failed to analyze resume.");
+    }
+  } catch (err) {
+    console.error(err);
+    setIsAnalyzing(false);
+    alert("Error connecting to backend.");
+  }
+};
+
+  };
 
   return (
     <section className="py-20 px-6 gradient-secondary">
@@ -123,28 +178,58 @@ const AIFeatures = () => {
         {/* Demo Section */}
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Resume Analyzer Demo */}
-          <Card className="shadow-card transition-smooth hover:shadow-glow animate-slide-up">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3">
-                <Upload className="h-5 w-5 text-primary" />
-                Resume Analyzer Demo
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="border-2 border-dashed border-border rounded-lg p-8 text-center transition-smooth hover:border-primary">
-                <Upload className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <p className="text-muted-foreground mb-4">
-                  Drop your resume here or click to upload
-                </p>
-                <Button className="shadow-glow hover:shadow-glow transition-smooth">
-                  Select File
-                </Button>
-                <p className="text-xs text-muted-foreground mt-3">
-                  Supports PDF, DOC, DOCX files up to 5MB
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          {/* Resume Analyzer Demo */}
+<Card className="shadow-card transition-smooth hover:shadow-glow animate-slide-up">
+  <CardHeader>
+    <CardTitle className="flex items-center gap-3">
+      <Upload className="h-5 w-5 text-primary" />
+      Resume Analyzer Demo
+    </CardTitle>
+  </CardHeader>
+  <CardContent>
+    <div className="border-2 border-dashed border-border rounded-lg p-8 text-center transition-smooth hover:border-primary">
+      {/* Hidden file input that will trigger the file dialog */}
+      <input
+        id="resume-upload"
+        type="file"
+        accept=".pdf,.doc,.docx"
+        className="hidden"
+        onChange={handleFileChange}
+        ref={fileInputRef} // Add this ref
+      />
+      
+      {/* Visible upload area that triggers the hidden input */}
+      <div 
+        onClick={() => fileInputRef.current?.click()}
+        className="cursor-pointer"
+      >
+        <Upload className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+        <p className="text-muted-foreground mb-4">
+          {uploadedFile ? uploadedFile.name : 'Drop your resume here or click to upload'}
+        </p>
+        <Button className="shadow-glow hover:shadow-glow transition-smooth">
+          {uploadedFile ? 'Change File' : 'Select File'}
+        </Button>
+      </div>
+      
+      <p className="text-xs text-muted-foreground mt-3">
+        Supports PDF, DOC, DOCX files up to 5MB
+      </p>
+      
+      {uploadedFile && (
+        <div className="mt-4">
+          <Button 
+            onClick={handleAnalyze}
+            disabled={isAnalyzing}
+            className="w-full shadow-glow hover:shadow-glow transition-smooth"
+          >
+            {isAnalyzing ? 'Analyzing...' : 'Analyze Resume'}
+          </Button>
+        </div>
+      )}
+    </div>
+  </CardContent>
+</Card>
 
           {/* Chatbot Preview */}
           <Card className="shadow-card transition-smooth hover:shadow-glow animate-slide-up" style={{animationDelay: '0.1s'}}>
@@ -157,13 +242,13 @@ const AIFeatures = () => {
             <CardContent>
               <div className="space-y-3 mb-4">
                 <div className="bg-muted rounded-lg p-3">
-                  <p className="text-sm">👋 Hi! I'm Alex's AI assistant. Ask me anything about his projects, skills, or experience!</p>
+                  <p className="text-sm">👋 Hi! I'm Kartik's AI assistant. Ask me anything about his projects, skills, or experience!</p>
                 </div>
                 <div className="bg-primary text-primary-foreground rounded-lg p-3 ml-8">
-                  <p className="text-sm">What AI technologies does Alex work with?</p>
+                  <p className="text-sm">What AI technologies does Kartik work with?</p>
                 </div>
                 <div className="bg-muted rounded-lg p-3">
-                  <p className="text-sm">Alex specializes in several AI technologies including LangChain for RAG applications, spaCy for NLP, and various ML libraries like Scikit-learn. He's currently working on...</p>
+                  <p className="text-sm">Kartik specializes in several AI technologies including LangChain for RAG applications, spaCy for NLP, and various ML libraries like Scikit-learn. He's currently working on...</p>
                 </div>
               </div>
               <Button className="w-full shadow-glow hover:shadow-glow transition-smooth">

@@ -43,7 +43,7 @@ const Navigation = () => {
               onClick={() => scrollToSection("#home")}
               className="text-xl font-bold bg-clip-text text-transparent gradient-primary hover:animate-glow transition-smooth"
             >
-              Alex Chen
+              Ashish Redij
             </button>
           </div>
 
